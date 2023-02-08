@@ -8,7 +8,7 @@
     String username=request.getParameter("username");
     String password=request.getParameter("password");
     if(username.equalsIgnoreCase("admin") && password.equals("a123")){
-        out.print("Welcome Admin");
+        response.sendRedirect("welcome.jsp");
     }else{
         out.print("Invalid username or password");
     }
