@@ -8,9 +8,25 @@
         <servlet-name>TestServlet</servlet-name>
         <servlet-class>com.ky.servlets.TestServlet</servlet-class>
     </servlet>
-    
+    <servlet>
+        <servlet-name>FormServlet</servlet-name>
+        <servlet-class>com.ky.servlets.FormServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.ky.servlets.LoginServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>TestServlet</servlet-name>
         <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FormServlet</servlet-name>
+        <url-pattern>/form</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
 </web-app>
