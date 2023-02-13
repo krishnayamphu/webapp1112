@@ -4,6 +4,10 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+    <context-param>
+        <param-name>user</param-name>
+        <param-value>Admin</param-value>
+    </context-param>
     <servlet>
         <servlet-name>TestServlet</servlet-name>
         <servlet-class>com.ky.servlets.TestServlet</servlet-class>
@@ -15,6 +19,14 @@
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.ky.servlets.LoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletConfigDemo</servlet-name>
+        <servlet-class>com.ky.servlets.ServletConfigDemo</servlet-class>
+        <init-param>
+            <param-name>company</param-name>
+            <param-value>Aptech Computer Education</param-value>
+        </init-param>
     </servlet>
 
     <servlet-mapping>
@@ -28,5 +40,9 @@
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletConfigDemo</servlet-name>
+        <url-pattern>/config</url-pattern>
     </servlet-mapping>
 </web-app>
