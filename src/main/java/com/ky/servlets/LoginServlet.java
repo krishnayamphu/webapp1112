@@ -17,7 +17,9 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         if (username.equals("admin") && password.equals("a123")) {
-            pw.print("welcome admin");
+           HttpSession session=request.getSession();
+           session.setAttribute("user",username);
+           response.sendRedirect("welcome");
         } else {
             String msg = "Invalid Username or Password";
             request.setAttribute("err", msg);
