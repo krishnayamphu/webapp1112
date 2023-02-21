@@ -11,14 +11,9 @@ import java.io.IOException;
 @WebServlet(name = "TodoAddServlet", value = "/todo-add")
 public class TodoAddServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("todo/create.jsp").forward(request,response);
-    }
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String item=request.getParameter("item");
         TodoDAO.addItem(new Todo(item,false));
-        System.out.println("item added");
+        response.sendRedirect(request.getHeader("referer"));
     }
 }

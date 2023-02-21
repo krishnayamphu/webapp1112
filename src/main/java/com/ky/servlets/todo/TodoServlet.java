@@ -13,14 +13,15 @@ import java.util.ArrayList;
 public class TodoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        ArrayList<Todo> todolist= TodoDAO.getAllItems();
-        request.setAttribute("todolist",todolist);
-        request.getRequestDispatcher("todo/index.jsp").forward(request,response);
+        ArrayList<Todo> todolist = TodoDAO.getAllItems();
+        request.setAttribute("todolist", todolist);
+        request.getRequestDispatcher("todo/index.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        int id = Integer.parseInt(request.getParameter("id"));
+        TodoDAO.removeItem(id);
+        response.sendRedirect("todo");
     }
 }

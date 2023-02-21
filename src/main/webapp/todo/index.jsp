@@ -6,22 +6,33 @@
     <title>All Todo Items</title>
 </head>
 <body>
-<h3>All Todo Items</h3>
+<form action="todo-add" method="post">
+    <input type="text" name="item" placeholder="Add todo item" required>
+    <button>Add</button>
+</form>
 <table>
-    <tr>
-        <th>Items</th>
-        <th>Action</th>
-    </tr>
     <%
         ArrayList<Todo> items= (ArrayList<Todo>) request.getAttribute("todolist");
         for (Todo todo:items) {
     %>
 
     <tr>
-        <td><%=todo.getItems()%></td>
         <td>
-            <a href="">Edit</a>
-            <a href="">Delete</a>
+
+        </td>
+        <td>
+            <%=todo.getItems()%>
+        </td>
+        <td>
+            <form action="todo-update" method="post">
+                <input type="checkbox" <%= todo.isStatus()==true?"checked":"" %> value="<%= todo.isStatus() %>" name="status">
+                <input type="hidden" value="<%= todo.getId() %>" name="id">
+                <button>Update</button>
+            </form>
+            <form action="todo" method="post">
+                <input type="hidden" value="<%= todo.getId() %>" name="id">
+                <button>Remove</button>
+            </form>
         </td>
     </tr>
     <%
