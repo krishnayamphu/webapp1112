@@ -15,14 +15,11 @@ public class TodoUpdateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        String status = request.getParameter("status");
-        boolean checked = false;
-        if (status!=null) {
-            checked = true;
-        }
+        boolean status= Boolean.parseBoolean(request.getParameter("status"));
+       
         Todo todo = new Todo();
         todo.setId(id);
-        todo.setStatus(checked);
+        todo.setStatus(status);
         TodoDAO.updateItem(todo);
         System.out.println(status);
         response.sendRedirect("todo");
