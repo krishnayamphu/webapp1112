@@ -4,8 +4,11 @@
     <title>User Registration</title>
 </head>
 <body>
-
-<form action="">
+<header>
+    <a href="users">Users</a>
+    <a href="user-create">New User</a>
+</header>
+<form action="user-create" method="post">
     <label>Username</label>
     <input type="text" name="username" required>
     <br><br>

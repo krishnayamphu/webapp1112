@@ -7,21 +7,21 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
-@WebServlet(name = "UserCreateServlet", value = "/user-create")
-public class UserCreateServlet extends HttpServlet {
+@WebServlet(name = "UserController", value = "/users")
+public class UserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("users/create.jsp").forward(request,response);
+        ArrayList<User> users= UserDAO.getAllUsers();
+        request.setAttribute("users",users);
+        request.getRequestDispatcher("users/index.jsp").forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username=request.getParameter("username");
-        String password=request.getParameter("password");
-        String email=request.getParameter("email");
-        User user=new User(username,password,email);
-        UserDAO.addUser(user);
+        int id=Integer.parseInt(request.getParameter("id"));
+        UserDAO.removeItem(id);
         response.sendRedirect(request.getHeader("referer"));
     }
 }
