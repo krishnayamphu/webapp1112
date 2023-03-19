@@ -21,6 +21,16 @@ public class UserEditController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        int id=Integer.parseInt(request.getParameter("id"));
+        String username=request.getParameter("username");
+        String password=request.getParameter("password");
+        String email=request.getParameter("email");
+        User user=new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setEmail(email);
+        user.setId(id);
+        UserDAO.updateUser(user);
+        response.sendRedirect("users");
     }
 }

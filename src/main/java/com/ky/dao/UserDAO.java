@@ -74,13 +74,15 @@ public class UserDAO {
         }
     }
 
-    public static void updateItem(Todo todo) {
+    public static void updateUser(User user) {
         try {
             Connection cn = ConnectDB.connect();
-            String sql = "UPDATE todolist SET status=? WHERE  id=?";
+            String sql = "UPDATE users SET username=?,password=?,email=? WHERE  id=?";
             PreparedStatement ps = cn.prepareStatement(sql);
-            ps.setBoolean(1, todo.isStatus());
-            ps.setInt(2, todo.getId());
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getPassword());
+            ps.setString(3,user.getEmail());
+            ps.setInt(4,user.getId());
             ps.executeUpdate();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

@@ -10,12 +10,13 @@
     <a href="users">Users</a>
     <a href="user-create">New User</a>
 </header>
-<form action="user-create" method="post">
+<form action="user-edit" method="post">
     <%
         ArrayList<User> users= (ArrayList<User>) request.getAttribute("users");
         for(User user:users)
         {
     %>
+    <input type="hidden" name="id" value="<%=user.getId()%>">
     <label>Username</label>
     <input type="text" name="username" value="<%=user.getUsername()%>" required>
     <br><br>
