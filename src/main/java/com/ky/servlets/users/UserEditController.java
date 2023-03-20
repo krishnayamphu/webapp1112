@@ -2,6 +2,7 @@ package com.ky.servlets.users;
 
 import com.ky.dao.UserDAO;
 import com.ky.models.User;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -24,10 +25,11 @@ public class UserEditController extends HttpServlet {
         int id=Integer.parseInt(request.getParameter("id"));
         String username=request.getParameter("username");
         String password=request.getParameter("password");
+        String hashPassword = DigestUtils.sha256Hex(password);
         String email=request.getParameter("email");
         User user=new User();
         user.setUsername(username);
-        user.setPassword(password);
+        user.setPassword(hashPassword);
         user.setEmail(email);
         user.setId(id);
         UserDAO.updateUser(user);
