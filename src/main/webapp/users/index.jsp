@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.ky.models.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -30,28 +31,22 @@
             <th>Created Date</th>
             <th>Action</th>
         </tr>
-        <%
-            ArrayList<User> users= (ArrayList<User>) request.getAttribute("users");
-            for(User user:users)
-            {
-                %>
-        <tr>
-            <td><%= user.getId()%></td>
-            <td><%= user.getUsername()%></td>
-            <td><%= user.getPassword()%></td>
-            <td><%= user.getEmail()%></td>
-            <td><%= user.getCreatedAt()%></td>
-            <td>
-                <a href="user-edit?id=<%=user.getId()%>"><button>Edit</button></a>
-                <form action="users" method="post">
-                    <input type="hidden" name="id" value="<%=user.getId()%>">
-                    <button>Delete</button>
-                </form>
-            </td>
-        </tr>
-        <%
-            }
-        %>
+        <c:forEach var="user" items="${users}">
+            <tr>
+                <td>${user.id}</td>
+                <td>${user.username}</td>
+                <td>${user.password}</td>
+                <td>${user.email}</td>
+                <td>${user.createdAt}</td>
+                <td>
+                    <a href="user-edit?id=${user.id}"><button>Edit</button></a>
+                    <form action="users" method="post">
+                        <input type="hidden" name="id" value="${user.id}">
+                        <button>Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </c:forEach>
     </table>
 </main>
 </body>
