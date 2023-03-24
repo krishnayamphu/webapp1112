@@ -13,4 +13,12 @@ public class MediaFile {
         }
         return allFiles;
     }
+    public static boolean remove(String path,String filename){
+        boolean status=false;
+        File file=new File(path+"/"+filename);
+        if(file.exists()){
+            status=file.delete();
+        }
+        return  status;
+    }
 }

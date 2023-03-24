@@ -6,6 +6,7 @@
     <style>
     .container{
         display: flex;
+        flex-wrap: wrap;
         padding: 15px;
         width: 90%;
         margin: 50px auto;
@@ -38,7 +39,8 @@
             <a href="uploads/${file}">
                 <img src="uploads/${file}" alt="" width="100px">
             </a>
-            <form action="">
+            <form action="media" method="post">
+                <input type="hidden" name="image" value="${file}">
                 <button>Remove</button>
             </form>
         </div>

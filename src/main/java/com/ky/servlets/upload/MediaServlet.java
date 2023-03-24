@@ -16,4 +16,15 @@ public class MediaServlet extends HttpServlet {
         request.setAttribute("files",files);
         request.getRequestDispatcher("fileupload/media.jsp").forward(request,response);
     }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String path=getServletContext().getRealPath("/uploads");
+        String filename=request.getParameter("image");
+        if(MediaFile.remove(path,filename)){
+           response.sendRedirect("media");
+            System.out.println("file deleted:"+path+"/"+filename);
+        }else{
+            System.out.println("file can't delete");
+        }
+    }
 }
