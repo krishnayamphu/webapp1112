@@ -6,12 +6,11 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class JavaMail {
-    public static void main(String[] args) {
+    public static void sendMail(String to,String subject,String data){
         String host="mail.himalayanaussie.com";
         final String user="test@himalayanaussie.com";//change accordingly
-        final String password="xxxxx";//change accordingly
+        final String password="xxxxxx";//change accordingly
 
-        String to="krishnayamphu@gmail.com";//change accordingly
 
         //Get the session object
         Properties props = new Properties();
@@ -30,11 +29,10 @@ public class JavaMail {
 
         //Compose the message
         try {
-            String data="Hello Java Mail";
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(user));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            message.setSubject("Testing java mail api");
+            message.setSubject(subject);
             message.setText(data);
 
             //send the message
